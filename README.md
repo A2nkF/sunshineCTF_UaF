@@ -14,9 +14,9 @@ This is the Layout
 ```
 Chunk1:     Heap Metadata      Array size      index0 ptr                NULL
 0x9d4d4b4:    0x00000011	     0x00000004      0x09d4d4c8             0x00000000
-                            +--------------------| 
-Chunk2:                     |index0                   index1         index2
-0x9d4d4c4:	0x00000019	0x00000001	                0x00000001	    0x00000001
+
+Chunk2:                     index0                   index1         index2
+0x9d4d4c4:	0x00000019	0x00000001	 0x00000001	    0x00000001
               index3     NULL
 0x9d4d4d4:	0x00000001	0x00000000
 ```
