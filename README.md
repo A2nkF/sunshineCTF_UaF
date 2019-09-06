@@ -71,7 +71,7 @@ gdb-peda$                                                        edit_array func
 
 Since I don't want to mess araund with the heap, I'll use ROP to get Code execution. Rop requires stack control, which we don't
 have yet but we can use our write primitive to get there. First we leak the address of some libc function and calculate the
-base. Then we can use the write to overwrite the GOT entry for `fgets()` with a pointer to the `gets()` function. `gets()` is prone to a stack buffer overflow. This gives us full stack control, however the binary has been compiled with stack cannary's on.
+base. Then we can use the write to overwrite the GOT entry for `fgets()` with a pointer to the `gets()` function. `gets()` is prone to a stack buffer overflow. This gives us full stack control, however the binary has been compiled with stack cannaries on.
 This will cause the process to crash, if a buffer overflow is detected. To bypass that, we could use our read primitive
 to leak the cannary before overflowing but the only way for doing that, that I could think of involved messing around with the heap, which I still don't want to. A much easier way to bypass that is to just let the process detect the overflow. After 
 detecting a buffer overflow, the program will attept to call the `__stack_chk_fail` function. This function lies within libc 
