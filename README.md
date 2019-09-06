@@ -6,7 +6,7 @@ Probably coming soon ;).
 
 ## Short Writeup
 The first bug is an Info leak, because the `ID`, which the create string/array functions return are pointers to the actual array/string. 
-The second bug is a Use after Free() in the function at `0x08048a0c`. This allows you to perform operations (e.g printing, editing) on an array or string. One issue is, that freeing an array results in the size field of the array being set to zero.
+The second bug is a Use after Free() in the function at `0x08048a0c`. This allows you to perform operations (e.g printing, editing) on an array or string after it has been free'd. One issue is, that freeing an array results in the size field of the array being set to zero.
 This means that even though you could theoretically edit it, it won't work 'cause the index that you want to edit has to be smaller than the size of the array, which means smaller than zero. And that's not possible since we are dealing with unsigned numbers. But using a few tricks, we can still achieve an Out of bounds read/write in the arrays
 
 An int array consists of two chunks:
